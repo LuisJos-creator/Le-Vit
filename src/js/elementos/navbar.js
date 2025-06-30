@@ -1,8 +1,9 @@
 import categorias from "../datos/categorias";
+import coloresFondo from "../datos/coloresFondo";
+// No need for a global 'tema' variable; handle theme changes directly in the event listener.
 
 export default function Navbar() {
-return `
-
+  return `
 <div class="navbar bg-base-100 shadow-sm">
   <div class="navbar-start">
     <div class="dropdown">
@@ -16,13 +17,22 @@ return `
           <a>Categorias</a>
           <ul class="p-2">
             ${categorias.map(categoria => `
-
             <li><a><img src="${categoria.icono}" width="20" id="${categoria.id}"> ${categoria.nombre}</a></li>
-
             `).join('')}
           </ul>
         </li>
-        <li><a>Item 3</a></li>
+        <li>
+        <a>Color de Fondo</a>
+        <ul class="p-2">
+            ${coloresFondo.map(color => `
+            <li>
+              <a>
+                <img src="${color.icono}" width="20" id="${color.id}" data-tema="${color.tema}"> ${color.nombre}
+              </a>
+            </li>
+            `).join('')}
+          </ul>
+        </li>
       </ul>
       </div>
     <a class="btn btn-ghost text-xl"><img src="src/img/shopgle_cart2.png" width="300px"></a>
@@ -36,23 +46,30 @@ return `
           <summary>Categorias</summary>
           <ul class="p-2 w-2xs">
             ${categorias.map(categoria => `
-
             <li><a><img src="${categoria.icono}" width="20" id="${categoria.id}"> ${categoria.nombre}</a></li>
-
             `).join('')}
           </ul>
         </details>
       </li>
-      <li><a>Item 3</a></li>
+      <li>
+        <details>
+          <summary>Color de Fondo</summary>
+          <ul class="p-2 w-2xs">
+            ${coloresFondo.map(color => `
+            <li>
+              <a>
+                <img src="${color.icono}" width="20" id="${color.id}" data-tema="${color.tema}"> ${color.nombre}
+              </a>
+            </li>
+            `).join('')}
+          </ul>
+        </details>
     </ul>
   </div>
   <div class="navbar-end">
     <a class="btn">Button</a>
   </div>
 </div>
-
-
-
 `;
 }
 
